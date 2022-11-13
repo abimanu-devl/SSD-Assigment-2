@@ -6,23 +6,24 @@ import {
 } from "react-router-dom";
 
 import Login from './app/pages/components/Login';
-import Home from './app/pages/components/Home';
 import Manager from './app/pages/components/Manager';
 import Worker from './app/pages/components/Worker';
-import WorkerUpload from './app/pages/components/WorkerUpload';
-import ManagerUpload from './app/pages/components/ManagerUpload';
+import MessageUpload from './app/pages/components/MessageUpload';
+import FileUpload from './app/pages/components/FileUpload';
+
 
 function App() {
+
+
   return (
     <div>
       <Router>
         <Routes>
           <Route path="/" element={<Login/>}/>
-          <Route path='/home' element={<Home/>}/>
           <Route path='/manager' element={<Manager/>}/>
           <Route path='/worker' element={<Worker/>}/>
-          <Route path='/worker-upload' element={<WorkerUpload/>}/>
-          <Route path='/manager-upload' element={<ManagerUpload/>}/>
+          <Route path='/message-upload' element={<MessageUpload/>}/>
+          <Route path='/file-upload' element={<FileUpload/>}/>
         </Routes>
       </Router>
     </div>

@@ -1,28 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import { AsgardeoSPAClient } from "@asgardeo/auth-spa";
-import { AuthProvider } from "@asgardeo/auth-react";
+import { json, useNavigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 
-const Login = () => {
+
+const Login = (props) => {
 
 	const navigate = useNavigate();
-	const auth = AsgardeoSPAClient.getInstance();
-
-	auth.initialize({
-		signInRedirectURL: "http://localhost:3000/home",
-		signOutRedirectURL: "http://localhost:3000/dashboard",
-		clientID: "HPViqF9I6t5JvRZ2tfanoTod_3ga",
-		baseUrl: ["https://localhost:9443"],
-   });
-
-   //auth.signIn();
-
+	const auth = useAuth0();
   
-    const homePage = () => {
-        // navigate("/home")
-		auth.signIn();
-    }
+
+	const getRole = async()=>{
+		const  token = await auth.getAccessTokenSilently();
+	    const decoded = jwt_decode(token);
+		const role = decoded.myroles[0];
+		localStorage.setItem("user_role",role);
+		return role;
+	}
+
+	const setSessions = () =>{
+		auth.getAccessTokenSilently().then(res=>{
+			localStorage.setItem('token',res);
+		});
+        localStorage.setItem('user_email',auth.user.email);
+		localStorage.setItem('status',auth.isAuthenticated);
+
+	}
+
+
 
 	const styles = {
 		display: 'flex',
@@ -30,13 +37,33 @@ const Login = () => {
 		justifyContent: 'center',
 	};
 
-	return (
-		<div>
+
+	if(auth.isAuthenticated){
+	 setSessions();
+     getRole().then(res=>{
+		if(res == 'manager'){
+        	window.location.href ="/manager";
+		}else{
+			window.location.href ="/worker";
+		}
+	 });
+	   
+
+	}else{
+		return(
+
+			<div >
 			<h1 style={styles}>Login page</h1><br/>
-			<img src="https://static.vecteezy.com/system/resources/thumbnails/007/033/146/small/profile-icon-login-head-icon-vector.jpg"></img>
-			<button onClick={homePage}>Login</button>
+			<img src="https://static.vecteezy.com/system/resources/thumbnails/007/033/146/small/profile-icon-login-head-icon-vector.jpg"></img><br/>
+			<button onClick={auth.loginWithRedirect}>Login</button>
+
+			{/* <h3>User is { isAuthenticated ? "Logged In":"Not Logeed in"}</h3>
+			<button onClick={callAPI}>Call the API</button>
+			<button onClick={getRole}>get user role</button>
+			<pre style={{textAlign:'start'}}>{JSON.stringify(user,null,2)}</pre> */}
 		</div>
-	);
+		);
+	}
 
 };
 
