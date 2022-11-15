@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Header from './Header';
+
 
 const MessageUpload = () => {
 
@@ -37,14 +39,15 @@ const MessageUpload = () => {
 	return (
 
 		<div>
-			<h1>Message Upload</h1>
-			<form onSubmit={submitMessage}>
-				<label>Subject :</label><br />
+			<Header email={localStorage.getItem('user_email')}></Header>
+			<center><h1>Message Upload</h1></center>
+			<center><form onSubmit={submitMessage}>
+				<label class="sr-only">Subject :</label><br />
 				<input type="text" name="subject" onChange={changeSubject}></input><br />
-				<label>Message :</label><br />
+				<label class="sr-only">Message :</label><br />
 				<textarea name="message" onChange={changeMessage}></textarea><br/>
-				<button>Submit</button>
-			</form>
+				<button class="btn btn-primary">Submit</button>
+			</form></center>
 
 		</div>
 	);

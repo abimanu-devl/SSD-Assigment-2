@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import Header from './Header';
+
 
 const Worker = () => {
 
@@ -11,12 +13,19 @@ const Worker = () => {
         navigate("/message-upload")
     }
 
+	const styles = {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+	};
+
 	return (
 		<div>
-			<h1>Worker page</h1>
-			<h3>Welocme {localStorage.getItem('user_email')}</h3>
-			<button onClick={workerUploadPage}>Upload a message</button><br/>
-			<button onClick={logout}>Log out</button>
+			<Header email={localStorage.getItem('user_email')}></Header>
+			<center><h1 style={styles}>Worker</h1><br/></center>
+			<center><img src="https://cdn-icons-png.flaticon.com/512/1106/1106631.png"></img></center><br/>
+			<center><button type="button" class="btn btn-primary" onClick={workerUploadPage}>Upload a message</button></center><br/>
+			{/* <button onClick={logout}>Log out</button> */}
 		</div>
 	);
 
