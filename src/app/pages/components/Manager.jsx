@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import Header from './Header';
 
 const Manager = () => {
 
@@ -23,11 +24,14 @@ const Manager = () => {
 
 	return (
 		<div>
-			<h1>Manager page</h1>
-			<h3>Welocme {localStorage.getItem('user_email')} </h3>
-			<button onClick={managerUploadPage}>Upload a file</button><br/>
-			<button onClick={messageUploadpage}>Upload a message</button><br/>
-			<button onClick={logout}>Log out</button>
+			<Header email={localStorage.getItem('user_email')}></Header>
+			<center><h1>Manager page</h1></center>
+			<center><img src="https://cdn-icons-png.flaticon.com/512/1106/1106631.png"></img></center><br/>
+			{/* <h3>Welocme {localStorage.getItem('user_email')} </h3> */}
+			<center><button class="btn btn-primary" onClick={managerUploadPage}>Upload a file</button>
+			<br/><br/>
+			<center></center><button class="btn btn-primary" onClick={messageUploadpage}>Upload a message</button></center><br/>
+			{/* <button onClick={logout}>Log out</button> */}
 		</div>
 	);
 
