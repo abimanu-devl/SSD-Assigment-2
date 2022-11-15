@@ -28,9 +28,9 @@ const Manager = () => {
 			<center><h1>Manager page</h1></center>
 			<center><img src="https://cdn-icons-png.flaticon.com/512/1106/1106631.png"></img></center><br/>
 			{/* <h3>Welocme {localStorage.getItem('user_email')} </h3> */}
-			<center><button class="btn btn-primary" onClick={managerUploadPage}>Upload a file</button>
+			<center><button class="btn btn-success btn-lg" onClick={managerUploadPage}>Upload a file</button>
 			<br/><br/>
-			<center></center><button class="btn btn-primary" onClick={messageUploadpage}>Upload a message</button></center><br/>
+			<center></center><button class="btn btn-primary btn-lg" onClick={messageUploadpage}>Upload a message</button></center><br/>
 			{/* <button onClick={logout}>Log out</button> */}
 		</div>
 	);

@@ -7,6 +7,12 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 function Header(Props) {
   const { logout } = useAuth0();
+
+   const signOut = () =>{
+    localStorage.clear();
+    logout();
+   }
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <Container>
@@ -19,9 +25,12 @@ function Header(Props) {
           </Nav>
           <Nav>
             <Nav.Link >{Props.email}</Nav.Link>
-            <Nav.Link eventKey={2} onClick={logout}>
+            {localStorage.getItem("status")?
+            <Nav.Link eventKey={2} onClick={signOut}>
             Log out
-            </Nav.Link>
+            </Nav.Link>:""
+             
+            }
           </Nav>
         </Navbar.Collapse>
       </Container>

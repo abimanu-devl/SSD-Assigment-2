@@ -24,7 +24,7 @@ const Worker = () => {
 			<Header email={localStorage.getItem('user_email')}></Header>
 			<center><h1 style={styles}>Worker</h1><br/></center>
 			<center><img src="https://cdn-icons-png.flaticon.com/512/1106/1106631.png"></img></center><br/>
-			<center><button type="button" class="btn btn-primary" onClick={workerUploadPage}>Upload a message</button></center><br/>
+			<center><button type="button" class="btn btn-primary btn-lg" onClick={workerUploadPage}>Upload a message</button></center><br/>
 			{/* <button onClick={logout}>Log out</button> */}
 		</div>
 	);
