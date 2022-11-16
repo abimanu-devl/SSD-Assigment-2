@@ -17,7 +17,8 @@ const FileUpload = () => {
 		setUploadFile(event.target.files[0]);
 	}
 
-	const submitFile = () => {
+	const submitFile = (event) => {
+		event.preventDefault();
 		const formData = new FormData();
 		formData.append("file", uploadFile);
 		formData.append("subject",subject);
@@ -29,6 +30,7 @@ const FileUpload = () => {
 			  authorization: `Bearer ${localStorage.getItem("token")}`,
 			}
 		}).then(res=>{
+			alert("File upload Success!!");
 			console.log(res);
 		}).catch(err=>{
 			alert(err);

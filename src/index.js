@@ -14,7 +14,7 @@ root.render(
       clientId= "SsQY7y7s1Od36f3PM0Y5zrdUVRQx3frx"
       redirectUri={window.location.origin}
       audience= "this is unique identifier"
-      scope = "openid profile email"
+      scope = "openid profile email upload:files"
       >
 
       <App />

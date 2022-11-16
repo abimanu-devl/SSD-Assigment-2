@@ -13,6 +13,10 @@ function Header(Props) {
     logout();
    }
 
+   const goHome = () =>{
+    localStorage.getItem("user_role")=="manager"?window.location.href="/manager":window.location.href="/worker";
+   }
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <Container>
@@ -22,6 +26,7 @@ function Header(Props) {
           <Nav className="me-auto">
             {/* <Nav.Link >Features</Nav.Link>
             <Nav.Link >Pricing</Nav.Link> */}
+            <Nav.Link onClick={goHome}>Home</Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link >{Props.email}</Nav.Link>

@@ -19,7 +19,7 @@ const MessageUpload = () => {
 	}
 
 	const submitMessage = (event) =>{
-		event.preventDefault();
+		 event.preventDefault();
 		axios.post('https://localhost:8070/messages',{
 			"subject":subject,
 			"message":message,
@@ -31,11 +31,18 @@ const MessageUpload = () => {
 				authorization: `Bearer ${localStorage.getItem("token")}`,
 			}
 		}).then(res=>{
+            resetFileds();
+			alert("Message Uploaded Success");
 			console.log(res);
 		}).catch(error=>{
           console.log(error);
 		});
 	}
+
+  const resetFileds = () =>{
+	setMessage("");
+	setSubject("");
+  }
 
 
 	return (
@@ -44,11 +51,11 @@ const MessageUpload = () => {
 			<Header email={localStorage.getItem('user_email')}></Header>
 			<center><h1>Message Upload</h1></center>
 			<center><form onSubmit={submitMessage}>
-				<label class="sr-only">Subject :</label><br />
+				<label className="sr-only">Subject :</label><br />
 				<input type="text" name="subject" onChange={changeSubject}></input><br />
-				<label class="sr-only">Message :</label><br />
+				<label className="sr-only">Message :</label><br />
 				<textarea name="message" onChange={changeMessage}></textarea><br/>
-				<button class="btn btn-primary">Submit</button>
+				<button className="btn btn-primary">Submit</button>
 			</form></center>
 
 		</div>

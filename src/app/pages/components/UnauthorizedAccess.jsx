@@ -27,7 +27,7 @@ const UnauthorizedAccess = () => {
       <div style={{ justifyContent: "center", paddingTop: "300px" }}>
         <h1>401 Error</h1>
         <h1>Access Denied</h1>
-        <button class="btn btn-primary" onClick={goBack}>
+        <button className="btn btn-primary" onClick={goBack}>
           Go Back To Login page
         </button>
       </div>
